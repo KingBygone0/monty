@@ -1,28 +1,42 @@
 #include "monty.h"
 
 /**
- * execute_opcode - Execute the specified Monty bytecode opcode.
+ * executeOpcode - Execute the specified Monty bytecode opcode.
  * @stack: A pointer to the top of the stack.
- * @instruction: The opcode to execute.
+ * @opcode: The opcode to execute.
  * @line_number: The current line number in the Monty bytecode file.
  */
-void execute_opcode(instruction_t *instruction, stack_t **stack,
-		unsigned int line_number)
+void executeOpcode(stack_t **stack, char *opcode, unsigned int line_number)
 {
-if (strcmp(instruction->opcode, "push") == 0)
-push_func(stack, line_number);
-else if (strcmp(instruction->opcode, "pall") == 0)
-pall_func(stack, line_number);
-else if (strcmp(instruction->opcode, "pint") == 0)
-pint_func(stack, line_number);
-else if (strcmp(instruction->opcode, "pop") == 0)
-pop_func(stack, line_number);
-/* Add more opcodes as needed...*/
+int value;
+char *arg;
+
+if (strcmp(opcode, "push") == 0)
+{
+arg = strtok(NULL, " \n");
+if (arg == NULL)
+{
+fprintf(stderr, "L%u: usage: push integer\n", line_number);
+exit(EXIT_FAILURE);
+}
+value = atoi(arg);
+push(stack, value);
+}
+else if (strcmp(opcode, "pall") == 0)
+pall(stack, line_number);
+else if (strcmp(opcode, "pint") == 0)
+pint(stack, line_number);
+else if (strcmp(opcode, "pop") == 0)
+pop(stack, line_number);
+else if (strcmp(opcode, "swap") == 0)
+swap(stack, line_number);
+else if (strcmp(opcode, "add") == 0)
+add(stack, line_number);
+else if (strcmp(opcode, "nop") == 0)
+nop(stack, line_number);
 else
 {
-/* Handle unknown opcodes or errors*/
-fprintf(stderr, "L%u: unknown instruction %s\n", line_number,
-		instruction->opcode);
+fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 exit(EXIT_FAILURE);
 }
 }

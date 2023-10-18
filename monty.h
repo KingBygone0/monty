@@ -45,13 +45,16 @@ typedef struct instruction_s
 
 
 /* Main Monty interpreter functions */
-void execute_opcode(instruction_t *instruction, stack_t **stack,
-		unsigned int line_number);
+void executeOpcode(stack_t **stack, char *opcode, unsigned int line_number);
+
 /* Opcode functions */
-void push_func(stack_t **stack, unsigned int line_number);
-void pall_func(stack_t **stack, unsigned int line_number);
-void pint_func(stack_t **stack, unsigned int line_number);
-bool is_number(const char *str);
-ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream);
-void pop_func(stack_t **stack, unsigned int line_number);
+void initializeStack(stack_t **stack);
+void push(stack_t **stack, int value);
+int pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+
 #endif /* MONTY_H */

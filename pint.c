@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * pint_func - Prints the value at the top of the stack.
+ * pint - Prints the value at the top of the stack.
  * @stack: Double pointer to the head of the stack
  * @line_number: Line number of the current opcode
  */
-void pint_func(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
 if (*stack == NULL)
 {
