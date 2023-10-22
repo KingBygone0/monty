@@ -45,7 +45,10 @@ typedef struct instruction_s
 
 /* Main Monty interpreter functions */
 void executeOpcode(stack_t **stack, char *opcode, unsigned int line_number);
-
+void setMode(bool is_stack);
+bool isStackMode(void);
+bool isQueueMode(void);
+void execute_opcode(char *opcode, stack_t **stack, unsigned int line_number);
 /* Opcode functions */
 void initializeStack(stack_t **stack);
 void push(stack_t **stack, int value);
@@ -61,4 +64,6 @@ void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */
