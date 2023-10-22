@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
+extern char *arg;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -44,26 +45,22 @@ typedef struct instruction_s
 
 
 /* Main Monty interpreter functions */
-void executeOpcode(stack_t **stack, char *opcode, unsigned int line_number);
-void setMode(bool is_stack);
-bool isStackMode(void);
-bool isQueueMode(void);
-void execute_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+void execute_opcode(stack_t **stack, char *opcode,
+		unsigned int line_number, char *args);
+void free_stack(stack_t *stack);
+
 /* Opcode functions */
-void initializeStack(stack_t **stack);
-void push(stack_t **stack, int value);
-int pop(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
-void _div(stack_t **stack, unsigned int line_number);
-void _mul(stack_t **stack, unsigned int line_number);
-void _mod(stack_t **stack, unsigned int line_number);
-void pchar(stack_t **stack, unsigned int line_number);
-void pstr(stack_t **stack, unsigned int line_number);
-void rotr(stack_t **stack, unsigned int line_number);
-void rotl(stack_t **stack, unsigned int line_number);
+void divide(stack_t **stack, unsigned int line_number);
+void multiply(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+bool is_number(const char *str);
 #endif /* MONTY_H */
+
