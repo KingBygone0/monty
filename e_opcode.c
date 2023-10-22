@@ -1,8 +1,5 @@
 #include "monty.h"
 
-/*Global variable to track the mode (stack or queue)*/
-bool mode_stack = true;
-
 
 /**
  * setMode - Sets the mode to stack or queue
@@ -10,6 +7,8 @@ bool mode_stack = true;
  */
 void setMode(bool is_stack)
 {
+bool mode_stack = true;
+
 mode_stack = is_stack;
 }
 
@@ -19,6 +18,8 @@ mode_stack = is_stack;
  */
 bool isStackMode(void)
 {
+bool mode_stack = true;
+
 return (mode_stack);
 }
 
@@ -28,6 +29,8 @@ return (mode_stack);
  */
 bool isQueueMode(void)
 {
+bool mode_stack = true;
+
 return (!mode_stack);
 }
 
